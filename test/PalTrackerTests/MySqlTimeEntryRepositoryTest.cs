@@ -14,15 +14,15 @@ namespace PalTrackerTests
 
         public MySqlTimeEntryRepositoryTest()
         {
-            // DbTestSupport.ExecuteSql("TRUNCATE TABLE time_entries");
+             DbTestSupport.ExecuteSql("TRUNCATE TABLE time_entries");
 
-            // var builder = new DbContextOptionsBuilder<TimeEntryContext>()
-            //     .UseMySql(DbTestSupport.TestDbConnectionString);
+             var builder = new DbContextOptionsBuilder<TimeEntryContext>()
+                 .UseMySql(DbTestSupport.TestDbConnectionString);
 
-            // _repository = new MySqlTimeEntryRepository(new TimeEntryContext(builder.Options));
+             _repository = new MySqlTimeEntryRepository(new TimeEntryContext(builder.Options));
         }
 
-        //[Fact]
+        [Fact]
         public void CreateInsertsATimeEntryRecord()
         {
             var newTimeEntry = new TimeEntry(123, 456, DateTime.Parse("2012-01-02"), 12);
@@ -40,7 +40,7 @@ namespace PalTrackerTests
             Assert.Equal(1, foundInDb.Count);
         }
 
-        //[Fact]
+        [Fact]
         public void CreateReturnsTheCreatedTimeEntry()
         {
             var newTimeEntry = new TimeEntry(123, 456, DateTime.Parse("2012-01-02"), 12);
@@ -54,7 +54,7 @@ namespace PalTrackerTests
             Assert.Equal(newTimeEntry.Hours, createdTimeEntry.Hours);
         }
 
-        //[Fact]
+        [Fact]
         public void FindFindsATimeEntry()
         {
             CreateInDb(new TimeEntry(1, 123, 456, DateTime.Parse("2012-01-02"), 12));
@@ -68,7 +68,7 @@ namespace PalTrackerTests
             Assert.Equal(12, timeEntry.Hours);
         }
 
-        //[Fact]
+        [Fact]
         public void ListFindsAllTimeEntries()
         {
             var expected = new List<TimeEntry>
@@ -87,7 +87,7 @@ namespace PalTrackerTests
             Assert.Equal(expected.Count, timeEntries.Count());
         }
 
-        //[Fact]
+        [Fact]
         public void ContainsTrueWhenPresent()
         {
             CreateInDb(new TimeEntry(1, 123, 456, DateTime.Parse("2012-01-02"), 12));
@@ -95,7 +95,7 @@ namespace PalTrackerTests
             Assert.True(_repository.Contains(1));
         }
 
-        //[Fact]
+        [Fact]
         public void ContainsFalseWhenAbsent()
         {
             CreateInDb(new TimeEntry(1, 123, 456, DateTime.Parse("2012-01-02"), 12));
@@ -103,7 +103,7 @@ namespace PalTrackerTests
             Assert.False(_repository.Contains(2));
         }
 
-       // [Fact]
+        [Fact]
         public void UpdateReturnsTheUpdatedRecord()
         {
             CreateInDb(new TimeEntry(1, 123, 456, DateTime.Parse("2012-01-02"), 12));
@@ -119,7 +119,7 @@ namespace PalTrackerTests
             Assert.Equal(update.Hours, updatedTimeEntry.Hours);
         }
 
-        //[Fact]
+        [Fact]
         public void UpdateUpdatesTheRecord()
         {
             CreateInDb(new TimeEntry(1, 123, 456, DateTime.Parse("2012-01-02"), 12));
@@ -138,7 +138,7 @@ namespace PalTrackerTests
             Assert.Equal(1, foundInDb.Count);
         }
 
-        //[Fact]
+        [Fact]
         public void DeleteRemovesTheRecord()
         {
             CreateInDb(new TimeEntry(1, 222, 333, DateTime.Parse("2020-12-14"), 24));

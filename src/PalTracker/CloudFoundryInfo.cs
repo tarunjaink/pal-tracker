@@ -9,6 +9,7 @@ namespace PalTracker
 
         public CloudFoundryInfo(string port, string memoryLimit, string cfInstanceIndex, string cfInstanceAddr)
         {
+            //port
             Port = port;
             MemoryLimit = memoryLimit;
             CfInstanceIndex = cfInstanceIndex;

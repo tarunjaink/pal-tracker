@@ -20,7 +20,8 @@ namespace PalTracker
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(config => config.AddCloudFoundry())
+                .ConfigureAppConfiguration(config => config.AddCloudFoundry())
                 .UseStartup<Startup>();
     }
+
 }

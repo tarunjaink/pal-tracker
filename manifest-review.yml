@@ -5,4 +5,4 @@ applications:
   routes:
   - route: pal-tracker-fantastic-kob.cfapps.io
   env:
-    WELCOME_MESSAGE: Hello from the review environments
+    WELCOME_MESSAGE: Hello from the review environment
